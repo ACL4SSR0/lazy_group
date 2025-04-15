@@ -24,8 +24,8 @@ jobs:
           
       - name: Modify config
         run: |
-          sed -i 's/^GEOIP,CN,DIRECT/IP-CIDR6,::\/0,DIRECT,no-resolve\nGEOIP,CN,DIRECT/g' lazy_group.conf
-          sed -i 's/ipv6 = true/ipv6 = false/g' lazy_group.conf
+          sed -i 's@^GEOIP,CN,DIRECT@RULE-SET,https://raw.githubusercontent.com/ACL4SSR0/custom_rules/refs/heads/main/custom.list,DIRECT\nGEOIP,CN,DIRECT@g' lazy_group.conf
+          sed -i 's@ipv6 = true@ipv6 = false@g' lazy_group.conf
       - name: Debug remote URL
         run: git remote -v
 
