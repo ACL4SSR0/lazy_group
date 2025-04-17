@@ -24,10 +24,12 @@ jobs:
           
       - name: Modify config
         run: |
+          sed -i 's@^dns-server.*@dns-server = https://doh.pub/dns-query,https://dns.alidns.com/dns-query@g' lazy_group.conf
+          sed -i 's@^fallback-dns-server.*@fallback-dns-server = 223.5.5.5,119.29.29.29@g' lazy_group.conf
           sed -i 's@^GEOIP,CN,DIRECT@RULE-SET,https://raw.githubusercontent.com/ACL4SSR0/custom_rules/refs/heads/main/custom.list,DIRECT\nGEOIP,CN,DIRECT@g' lazy_group.conf
-          sed -i 's@ipv6 = true@ipv6 = false@g' lazy_group.conf
-      - name: Debug remote URL
-        run: git remote -v
+          sed -i 's@^ipv6 = true@ipv6 = false@g' lazy_group.conf
+      - name: Show status
+        run: git status
 
       - name: Commit changes
         run: |
