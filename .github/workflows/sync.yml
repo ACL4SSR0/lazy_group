@@ -27,6 +27,7 @@ jobs:
           sed -i 's@^dns-server.*@dns-server = https://doh.pub/dns-query,https://dns.alidns.com/dns-query@g' lazy_group.conf
           sed -i 's@^GEOIP,CN,DIRECT@RULE-SET,https://raw.githubusercontent.com/ACL4SSR0/custom_rules/refs/heads/main/custom.list,DIRECT\nGEOIP,CN,DIRECT@g' lazy_group.conf
           sed -i 's@^ipv6 = true@ipv6 = false@g' lazy_group.conf
+          sed -i 's@^localhost = 127.0.0.1@*.eastmoney.com = server:223.5.5.5\nlocalhost = 127.0.0.1@g' lazy_group.conf
       - name: Show status
         run: git status
 
